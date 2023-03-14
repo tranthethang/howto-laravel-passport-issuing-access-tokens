@@ -11,12 +11,12 @@ export default {
   data() {
     return {
       accessToken: '',
-      refreshToken: ''
+      refreshToken: '',
     }
   },
   async created() {
     try {
-      const response = await this.getToken();
+      const response = await this.getToken()
       this.accessToken = response?.data?.access_token
       this.refreshToken = response?.data?.refresh_token
     } catch (e) {
@@ -28,18 +28,18 @@ export default {
     getToken: async function () {
       return await this.$axios.post('/api/oauth/token', {
         grant_type: 'authorization_code',
-        client_id: '1',
-        client_secret: 'OKMAlsMykapbuNJ2kvc320cpYZdRmwD0JcMbdFWQ',
-        redirect_uri: 'http://127.0.0.1:3000/auth/callback',
-        code: this.$route.query?.code
-      });
-    }
-  }
+        client_id: process.env.oauth2.clientId,
+        client_secret: process.env.oauth2.clientSecret,
+        redirect_uri: process.env.oauth2.redirect,
+        code: this.$route.query?.code,
+      })
+    },
+  },
 }
 </script>
 <style scoped>
 .wrap {
-  width: calc(960 / 1960 * 100%);
+  width: calc(1280 / 1960 * 100%);
   min-width: 460px;
   margin: 0 auto;
 }

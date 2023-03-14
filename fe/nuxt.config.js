@@ -54,10 +54,18 @@ export default {
   },
 
   proxy: {
-    '/api/': { target: 'http://127.0.0.1:8000', pathRewrite: {'^/api/': ''} }
+    '/api/': { target: process.env.API_URL, pathRewrite: {'^/api/': ''} }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  env: {}
+  env: {
+    apiUrl: process.env.API_URL,
+    oauth2: {      
+      clientId: process.env.API_CLIENT_ID,
+      clientSecret: process.env.API_CLIENT_SECRET,
+      redirectUrl: process.env.API_REDIRECT_URL
+    }
+  }
 }
+

@@ -12,9 +12,21 @@ API
     ```
 5. 
     ```shell
-    php artisan passport:keys
+    php artisan migrate:refresh --seed
     ```
 6. 
+    ```shell
+    php artisan passport:keys
+    ```
+7. 
     ```shell    
     php artisan passport:client
+    ```
+8. 
+    ```shell    
+    yarn install
+    ```
+9. 
+    ```shell    
+    yarn build
     ```
