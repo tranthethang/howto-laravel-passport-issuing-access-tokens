@@ -12,5 +12,9 @@ API
     ```
 5. 
     ```shell
+    php artisan passport:keys
+    ```
+6. 
+    ```shell    
     php artisan passport:client
     ```
