@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {stringify} from 'querystring';
+import { stringify } from 'querystring'
 
 export default {
   name: 'IndexPage',
@@ -15,21 +15,22 @@ export default {
   methods: {
     handleLogin() {
       const params = {
-        client_id: '1',
-        redirect_uri: 'http://127.0.0.1:3000/auth/callback',
+        client_id: process.env.oauth2.clientId,
+        redirect_uri: process.env.oauth2.redirect,
         response_type: 'code',
         scope: '',
         state: '',
-        prompt: ''
+        prompt: '',
       }
-      location.href = 'http://127.0.0.1:8000/oauth/authorize?' + stringify(params)
-    }
-  }
+      location.href =
+        process.env.apiUrl + '/oauth/authorize?' + stringify(params)
+    },
+  },
 }
 </script>
 <style scoped>
 .wrap {
-  width: calc(960 / 1960 * 100%);
+  width: calc(1280 / 1960 * 100%);
   min-width: 460px;
   margin: 0 auto;
 }

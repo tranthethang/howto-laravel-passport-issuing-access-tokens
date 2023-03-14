@@ -59,5 +59,18 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  env: {}
+  env: {
+    apiUrl: 'http://127.0.0.1:8000',
+    oauth2: {      
+      clientId: '1',
+      clientSecret: 'wrb3Ql3xvy5Vlkadahjzbrh43QQNx3vpzPjjgpkG',
+      redirectUrl: 'http://127.0.0.1:3000/auth/callback'
+    }
+  }
 }
+
+
+// API_URL=http://127.0.0.1:8000
+// API_CLIENT_ID=1
+// API_CLIENT_SECRET=wrb3Ql3xvy5Vlkadahjzbrh43QQNx3vpzPjjgpkG
+// API_REDIRECT=http://127.0.0.1:3000/auth/callback
