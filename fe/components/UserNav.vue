@@ -1,6 +1,8 @@
 <template>
   <div class="user-nav">
-    <button v-if="!loggedIn" @click="handleLogin">Login</button>
+    <button v-if="!loggedIn" class="is-primary" @click="handleLogin">
+      Login
+    </button>
     <div v-else>
       <span>Hi, {{ user.name }}!</span>
       <span><button @click="handleLogout">Logout</button></span>
@@ -9,20 +11,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'UserNav',
   data() {
-    return {
-      user: this.$store.state.auth.user,
-      loggedIn: this.$store.state.auth.loggedIn,
-    }
+    return {}
+  },
+  computed: {
+    ...mapState('auth', {
+      user: (state) => state.user,
+      loggedIn: (state) => state.loggedIn,
+    }),
   },
   methods: {
     async handleLogin() {
       await this.$auth.loginWith('passport')
     },
-    async handleLogout() {        
+    async handleLogout() {
       await this.$auth.logout()
+      this.user = {}
+      this.loggedIn = false
+      await this.$router.push({ path: '/' })
     },
   },
 }

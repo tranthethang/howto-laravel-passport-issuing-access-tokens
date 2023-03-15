@@ -1,5 +1,5 @@
 <template>
-  <div class="page"></div>
+  <div class="page">This is login page.</div>
 </template>
 
 <script>
@@ -8,7 +8,6 @@ export default {
   data() {
     return {}
   },
-  methods: {
-  },
+  methods: {},
 }
 </script>

@@ -8,12 +8,12 @@ export default {
   async created() {
     try {
       const response = await this.getToken()
-      await this.$auth.strategy.token.set(response?.data?.access_token)
-      await this.$auth.strategy.refreshToken.set(response?.data?.refresh_token)
-
-      setTimeout(function () {
-        this.$router.push('/')
-      }, 1000)
+      await this.$auth.setUserToken(
+        response?.data?.access_token,
+        response?.data?.refresh_token
+      )
+      await this.$auth.fetchUserOnce()
+      await this.$router.push({ path: '/profile' })
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e)
@@ -21,11 +21,13 @@ export default {
   },
   methods: {
     getToken: async function () {
+      const { clientId, clientSecret, redirectUri } = process.env.oauth2
+
       return await this.$axios.post('/backend/oauth/token', {
         grant_type: 'authorization_code',
-        client_id: process.env.oauth2.clientId,
-        client_secret: process.env.oauth2.clientSecret,
-        redirect_uri: process.env.oauth2.redirectUri,
+        client_id: clientId,
+        client_secret: clientSecret,
+        redirect_uri: redirectUri,
         code: this.$route.query?.code,
       })
     },

@@ -1,95 +1,105 @@
 *
-    box-sizing: content-box
+  box-sizing: content-box
 
 body
-    background-color: #ddd
-    margin: 0
-    font-size: 15px
-    line-height: 1.25
-    font-family: 'Josefin+Sans'
+  margin: 0
+  font-size: 12px
+  line-height: 1.25
+  font-family: 'Josefin Sans', sans-serif
+  background: center center repeat url("assets/images/bg01.webp") transparent
 
 h1, h2, h3, h4, h5, h6
-    font-family: 'Lato'
+  font-family: 'Lato', sans-serif
 
 h1
-    font-size: 2rem
+  font-size: 2rem
 
 header
-    padding: 30px 15px
+  padding: 15px
 
 footer
-    padding: 30px 15px
+  padding: 5px 15px
 
 .site-name
-    margin: 0
+  margin: 0
 
 .divider
-    margin: 0
-    padding: 0
-    height: 2px
-    background: linear-gradient(to right, purple, orange)
+  margin: 0
+  padding: 0
+  height: 2px
+  background: linear-gradient(to right, purple, orange)
 
 .screen
-    width: 960px
-    margin: 0 auto
-    background-color: #fdfdfd
-    display: flex
-    flex-direction: column
-    min-height: calc(100vh)
+  width: 480px
+  margin: 0 auto
+  background-color: #fdfdfd
+  display: flex
+  flex-direction: column
+  min-height: calc(100vh)
 
 .main
-    padding: 30px 15px
-    flex: 1
+  padding: 30px 15px
+  flex: 1
 
 ul, ol
-    list-style: none
-    margin: 0
-    padding: 0
+  list-style: none
+  margin: 0
+  padding: 0
 
 li
-    margin-block: 10px
-    padding-bottom: 10px
-    border-bottom: 1px solid #ddd
-    display: flex
+  margin-block: 10px
+  padding-bottom: 10px
+  border-bottom: 1px solid #ddd
+  display: flex
 
 fieldset, input[type="text"], select, textarea
-    margin-bottom: 0
-    padding: 10px
-    border-radius: 3px
-    border: 1px solid #ddd
-    outline-color: orange
-    min-width: 300px
+  margin-bottom: 0
+  padding: 10px
+  border-radius: 3px
+  border: 1px solid #ddd
+  outline-color: orange
+  min-width: 300px
 
 code
-    display: inline-block
-    margin-left: 5px
-    margin-right: 5px
-    padding-left: 5px
-    padding-right: 5px
-    font-size: 0.75rem
-    line-height: 1.25rem
-    border: 1px solid #ddd
-    border-radius: 3px
-    background-color: #eee
+  display: inline-block
+  margin-left: 5px
+  margin-right: 5px
+  padding-left: 5px
+  padding-right: 5px
+  font-size: 0.75rem
+  line-height: 1.25rem
+  border: 1px solid #ddd
+  border-radius: 3px
+  background-color: #eee
 
 button
-    display: inline-block
-    font-size: 12px
+  display: inline-block
+  font-size: 12px
+  padding: 5px 20px
+  border-radius: 3px
+  line-height: 20px
+  cursor: pointer
+  transition: 0.25s
+  background-color: #fff
+  color: #000
+  border: 1px solid coral
+
+  &:hover
+    opacity: 0.7
+    color: #fff
+    border: 1px solid coral
+    background-color: coral
+
+  &.is-primary
     background-color: coral
     color: #fff
-    padding: 5px 20px
-    border-radius: 3px
-    line-height: 20px
-    border: 1px solid chocolate
-    cursor: pointer
-    transition: 0.25s
+    border: 1px solid coral
+    &:hover
+      border-color: coral
+      color: coral
+      background-color: #fff
 
-    &:hover 
-        opacity: 0.7
-        border-color: coral
-        background-color: #ffffff
-        color: chocolate
 
 .site-header
-    display: flex
-    justify-content: space-between
+  display: flex
+  justify-content: space-between
