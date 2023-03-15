@@ -1,6 +1,10 @@
 <template>
   <div class="user-nav">
-    <button @click="handleClick">Login</button>
+    <button v-if="!loggedIn" @click="handleLogin">Login</button>
+    <div v-else>
+      <span>Hi, {{ user.name }}!</span>
+      <span><button @click="handleLogout">Logout</button></span>
+    </div>
   </div>
 </template>
 
@@ -8,11 +12,17 @@
 export default {
   name: 'UserNav',
   data() {
-    return {}
+    return {
+      user: this.$store.state.auth.user,
+      loggedIn: this.$store.state.auth.loggedIn,
+    }
   },
   methods: {
-    handleClick() {
-      this.$auth.loginWith('passport')
+    async handleLogin() {
+      await this.$auth.loginWith('passport')
+    },
+    async handleLogout() {        
+      await this.$auth.logout()
     },
   },
 }
