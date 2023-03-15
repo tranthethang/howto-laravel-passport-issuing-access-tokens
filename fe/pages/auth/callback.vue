@@ -10,7 +10,10 @@ export default {
       const response = await this.getToken()
       await this.$auth.strategy.token.set(response?.data?.access_token)
       await this.$auth.strategy.refreshToken.set(response?.data?.refresh_token)
-      await this.$router.push('/')
+
+      setTimeout(function () {
+        this.$router.push('/')
+      }, 1000)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e)

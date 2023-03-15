@@ -1,5 +1,5 @@
 <template>
-  <div>user logged!</div>
+  <div class="page"></div>
 </template>
 
 <script>

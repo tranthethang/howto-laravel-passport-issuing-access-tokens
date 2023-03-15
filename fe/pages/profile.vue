@@ -1,11 +1,11 @@
 <template>
-  <div>profile..</div>
+  <div class="page"></div>
 </template>
 
 <script>
 export default {
-  middleware: ['auth'],
   name: 'ProfilePage',
+  middleware: ['auth'],
   created() {},
   methods: {},
 }
