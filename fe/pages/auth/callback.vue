@@ -1,24 +1,19 @@
 <template>
-  <div class="wrap">
-    <p><code>accessToken</code><textarea v-model="accessToken"></textarea></p>
-    <p><code>refreshToken</code><textarea v-model="refreshToken"></textarea></p>
-  </div>
+  <div>loading..</div>
 </template>
 
 <script>
 export default {
   name: 'CallbackPage',
-  data() {
-    return {
-      accessToken: '',
-      refreshToken: '',
-    }
-  },
   async created() {
     try {
       const response = await this.getToken()
-      this.accessToken = response?.data?.access_token
-      this.refreshToken = response?.data?.refresh_token
+      await this.$auth.setUserToken(
+        response?.data?.access_token,
+        response?.data?.refresh_token
+      )
+      await this.$auth.fetchUserOnce()
+      await this.$router.push({ path: '/profile' })
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e)
@@ -26,41 +21,16 @@ export default {
   },
   methods: {
     getToken: async function () {
-      return await this.$axios.post('/api/oauth/token', {
+      const { clientId, clientSecret, redirectUri } = process.env.oauth2
+
+      return await this.$axios.post('/backend/oauth/token', {
         grant_type: 'authorization_code',
-        client_id: process.env.oauth2.clientId,
-        client_secret: process.env.oauth2.clientSecret,
-        redirect_uri: process.env.oauth2.redirect,
+        client_id: clientId,
+        client_secret: clientSecret,
+        redirect_uri: redirectUri,
         code: this.$route.query?.code,
       })
     },
   },
 }
 </script>
-<style scoped>
-.wrap {
-  width: calc(1280 / 1960 * 100%);
-  min-width: 460px;
-  margin: 0 auto;
-}
-code {
-  display: inline-block;
-  font-size: 12px;
-  background-color: #ffffff;
-  color: coral;
-  padding: 5px;
-  border: 1px solid #aaaaaa;
-  border-bottom: none;
-}
-textarea {
-  resize: horizontal;
-  width: 100%;
-  border: 1px solid #aaa;
-  padding: 10px 5px;
-  min-height: 150px;
-  font-size: 11px;
-  line-height: 15px;
-  color: #555;
-  outline: none;
-}
-</style>
